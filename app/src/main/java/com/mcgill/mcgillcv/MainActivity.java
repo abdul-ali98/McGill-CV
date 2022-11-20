@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -14,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.mcgill.mcgillcv.controller.Generate;
 import com.mcgill.mcgillcv.databinding.ActivityMainBinding;
 import com.mcgill.mcgillcv.model.CV;
 import com.mcgill.mcgillcv.model.Club;
@@ -82,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         String startYear = "";
         String graduationYear = "";
         cv = new CV(name, email, phone, website, linkedIn, github, major, minor, gpa, startYear, graduationYear);
+        Log.d("reading file", Generate.createHTML(this.getApplicationContext(),cv));
+
     }
 
     @Override
@@ -115,14 +119,13 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
     public void onCheckboxClicked(View v) {
-        Toast.makeText(this, ((EditText)findViewById(R.id.linkedIn)).getText().toString()+ "", Toast.LENGTH_LONG).show();
     }
     public void firstSaveOnClick(View v) {
         boolean isCorrect = true;
         Editable name = ((EditText) findViewById(R.id.name)).getText();
         String regexName = "^[A-Z](?=.{1,29}$)[A-Za-z]*(?:\\h+[A-Z][A-Za-z]*)*$";
         if (name == null || !name.toString().matches(regexName) ) {
-            Toast.makeText(this, "Name is Invalid, must start with Cap", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Name is Invalid, must start with Cap", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         else {
@@ -132,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         String regexEmail = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         if (email == null || !email.toString().matches(regexEmail) ) {
-            Toast.makeText(this, "Email is Invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Email is Invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         else {
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         Editable phoneNumber = ((EditText) findViewById(R.id.phone)).getText();
         String regexPhone = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
         if (phoneNumber == null || !phoneNumber.toString().matches(regexPhone) ) {
-            Toast.makeText(this, "Phone is Invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Phone is Invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         else {
@@ -150,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         Spinner majorSpinner = (Spinner) findViewById(R.id.major_spinner);
         String major = majorSpinner.getSelectedItem().toString();
         if (major.equals("Select your Major")) {
-            Toast.makeText(this, "Major is not selected", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Major is not selected", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         else {
@@ -184,31 +187,31 @@ public class MainActivity extends AppCompatActivity {
             + cv.getBasicInformation().getPhoneNumber() + " "
             + cv.getBasicInformation().getStartDate()+ " "
             + cv.getBasicInformation().getExpectedGraduationDate() + " "
-                    + cv.getBasicInformation().getMajor(), Toast.LENGTH_LONG).show();
+                    + cv.getBasicInformation().getMajor(), Toast.LENGTH_SHORT).show();
     }
 
     public void secondSaveOnClick(View v){
         boolean isCorrect = true;
         Editable website = ((EditText) findViewById(R.id.website)).getText();
         String regexWebsite = "<\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]>";
-        if (website == null || !website.toString().matches(regexWebsite) ) {
+        if (website == null || website.toString().length() < 10) {
             Toast.makeText(this, "Website is Invalid dude but I'll let it slide", Toast.LENGTH_LONG).show();
         }
         else {
-            cv.getBasicInformation().setGpa(website.toString());
+            cv.getBasicInformation().setPersonalWebsite(website.toString());
         }
         Editable linkedIn = ((EditText) findViewById(R.id.linkedIn)).getText();
-        if (linkedIn == null || !linkedIn.toString().matches(regexWebsite) ) {
+        if (linkedIn == null || linkedIn.toString().length() < 10 ) {
             Toast.makeText(this, "LinkedIn is Invalid, let it slide..", Toast.LENGTH_LONG).show();
         }
         else {
-        cv.getBasicInformation().setGpa(linkedIn.toString());
+        cv.getBasicInformation().setLinkedInLink(linkedIn.toString());
         }
 
         Editable gpa = ((EditText) findViewById(R.id.gpa)).getText();
         String regexGpa = "/^[0-4]\\.\\d\\d$/";
-        if (gpa == null || !gpa.toString().matches(regexGpa) ) {
-            Toast.makeText(this, "GPA is Invalid", Toast.LENGTH_LONG).show();
+        if (gpa == null || gpa.toString().length() != 5 ) {
+            Toast.makeText(this, "GPA is Invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         else {
@@ -227,11 +230,11 @@ public class MainActivity extends AppCompatActivity {
         if (checkboxJava.isChecked())
             Toast.makeText(this, "You still believe that Java is a spoken language?", Toast.LENGTH_LONG).show();
         if (checkboxEnglish.isChecked())
-            cv.getBasicInformation().addLanguage(new Language("English", cv.getBasicInformation(),cv));
+            cv.addLanguage(new Language("English",cv));
         if (checkboxFrench.isChecked())
-            cv.getBasicInformation().addLanguage(new Language("French", cv.getBasicInformation(),cv));
+            cv.addLanguage(new Language("French",cv));
         if (isCorrect) {
-            Toast.makeText(this, "All good", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "All good", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -239,30 +242,30 @@ public class MainActivity extends AppCompatActivity {
         boolean isCorrect = true;
         Editable title = ((EditText) findViewById(R.id.title_third)).getText();
         if (title == null || title.toString().length() < 5 || title.toString().length() > 30) {
-            Toast.makeText(this, "Title is invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Title is invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         Editable company = ((EditText) findViewById(R.id.company_third)).getText();
         if (company == null || title.toString().length() < 2 || title.toString().length() > 30) {
-            Toast.makeText(this, "Company is invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Company is invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
 
         Editable startDate = ((EditText) findViewById(R.id.startDate_third)).getText();
         if (startDate == null || startDate.toString().length() != 7) {
-            Toast.makeText(this, "start Date is invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "start Date is invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
 
         Editable endDate = ((EditText) findViewById(R.id.endDate_third)).getText();
         if (endDate == null || endDate.toString().length() != 7) {
-            Toast.makeText(this, "End Date is invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "End Date is invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
 
         Editable description = ((EditText) findViewById(R.id.description_third)).getText();
         if (description == null || description.toString().length() > 200) {
-            Toast.makeText(this, "description is invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "description is invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         String type = "";
@@ -301,8 +304,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Title is invalid", Toast.LENGTH_LONG).show();
             isCorrect = false;
         }
-        Editable descrption = ((EditText) findViewById(R.id.description_fourth)).getText();
-        if (descrption == null || descrption.toString().length() < 30) {
+        Editable description = ((EditText) findViewById(R.id.description_fourth)).getText();
+        if (description == null || description.toString().length() < 30) {
             Toast.makeText(this, "Please provide more details", Toast.LENGTH_LONG).show();
             isCorrect = false;
         }
@@ -312,15 +315,14 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "url is invalid but will let it slide", Toast.LENGTH_LONG).show();
         }
         if (isCorrect) {
-            Project p = new Project(title.toString(), descrption.toString(), url == null? "" : url.toString());
-            // TODO
+            Project p = new Project(title.toString(), description.toString(),url.toString(),cv);
             Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
             ((EditText) findViewById(R.id.title_fourth)).setText("");
             ((EditText) findViewById(R.id.description_fourth)).setText("");
             ((EditText) findViewById(R.id.link_fourth)).setText("");
         }
     }
-    public void fifthSaveOnClick(){
+    public void fifthSaveOnClick(View v){
         boolean isCorrect = true;
         Editable name = ((EditText) findViewById(R.id.club_fifth)).getText();
         if (name == null || name.toString().length() < 2) {
@@ -347,27 +349,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    public void sixthSaveOnClick() {
+    public void sixthSaveOnClick(View v) {
         boolean isCorrect = true;
         Editable name = ((EditText) findViewById(R.id.team_name_sixth)).getText();
         if (name == null || name.toString().length() < 2) {
-            Toast.makeText(this, "Team name is invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Team name is invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         Editable sportName = ((EditText) findViewById(R.id.sport_sixth)).getText();
         if (sportName == null || sportName.toString().length() < 5) {
-            Toast.makeText(this, "Invalid Sport", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Invalid Sport", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
 
         Editable startDate = ((EditText) findViewById(R.id.start_date_sixth)).getText();
         if (startDate == null || startDate.toString().length() != 7) {
-            Toast.makeText(this, "start date is invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "start date is invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         Editable endDate = ((EditText) findViewById(R.id.end_date_sixth)).getText();
         if (startDate == null || startDate.toString().length() != 7) {
-            Toast.makeText(this, "End date is invalid", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "End date is invalid", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         if (isCorrect) {
@@ -380,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    public void seventhSaveOnClick() {
+    public void seventhSaveOnClick(View v) {
         CheckBox checkboxComp202 = (CheckBox) findViewById(R.id.checkbox_comp202);
         CheckBox checkboxComp206 = (CheckBox) findViewById(R.id.checkbox_comp206);
         CheckBox checkboxECSE202 = (CheckBox) findViewById(R.id.checkbox_ecse202);
@@ -411,5 +413,11 @@ public class MainActivity extends AppCompatActivity {
         if (cv.getCourses().size() < 1)
             Toast.makeText(this,"You only took " + cv.getCourses().size()+ " courses", Toast.LENGTH_LONG ).show();
 
+        try {
+            Log.d("Generate: ", Generate.createHTML(this.getApplicationContext(), cv));
+        } catch (Exception e) {
+            e.getMessage();
+                    Log.d("error motherfucker", e.getMessage());
+        }
     }
 }

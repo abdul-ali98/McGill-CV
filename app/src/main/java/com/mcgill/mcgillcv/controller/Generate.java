@@ -1,18 +1,26 @@
+package com.mcgill.mcgillcv.controller;
+
+import android.content.Context;
+import android.os.FileUtils;
+import android.util.Log;
+
+import com.mcgill.mcgillcv.model.CV;
+import com.mcgill.mcgillcv.model.Club;
+import com.mcgill.mcgillcv.model.Course;
+import com.mcgill.mcgillcv.model.Experience;
+import com.mcgill.mcgillcv.model.Language;
+import com.mcgill.mcgillcv.model.Project;
+import com.mcgill.mcgillcv.model.Skill;
+import com.mcgill.mcgillcv.model.Sport;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
-import org.apache.commons.io.FileUtils;
-
-import model.CV;
-import model.Club;
-import model.Course;
-import model.Experience;
-import model.Language;
-import model.Project;
-import model.Skill;
-import model.Sport;
 
 public class Generate {
   
@@ -26,7 +34,7 @@ public class Generate {
     private static int CLUBS_MAX = 2;
     
     private static CV cv = new CV("Bobby","bob@mail.com","514-999-9999","https://www.youtube.com/watch?v=cYswNr7s4Pk","https2","http3","software","mechanical","4.0","01/09/2019","01/05/2024");
-    
+
     public static void optimize() {
 
       int numExperience = cv.getExperiences().size();
@@ -499,27 +507,31 @@ public class Generate {
       
     }
 
-    public static void main(String[] args){
+  /*  public static void main(String[] args){
 
         createFakeData();
 
         createHTML();
-    }
+    } */
     
-    public static void createHTML() {
-      
-      File myObj = new File("template.html");
-      String string ="";
-      
-      try {
-         string = FileUtils.readFileToString(myObj);
-      } catch (IOException e) {
+    public static String createHTML(Context c, CV cv) {
 
-          // Display message when exception occurs
-          System.out.println("exception occurred" + e);
-      }
+        Generate.cv = cv;
+        StringBuilder everything =new StringBuilder();
+        try {
+            InputStream in =  c.getAssets().open("template.html");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            String line;
+            while( (line = reader.readLine()) != null) {
+                everything.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("error template", e.getMessage());
+        }
       
-      
+      String string = everything.toString();
+
       addSkillsAndProjectsFromCourses();
       optimize();
       string = writeHeader(string);
@@ -554,7 +566,8 @@ public class Generate {
     
           // Display message when exception occurs
           System.out.println("exception occurred" + e);
-      }    
+      }
+      return string;
   }
 
 }

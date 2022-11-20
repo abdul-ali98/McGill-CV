@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:text="save"
             android:onClick="fifthSaveOnClick"
-            android:id="@+id/third_save"/>
+            android:id="@+id/fifth_save"/>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
