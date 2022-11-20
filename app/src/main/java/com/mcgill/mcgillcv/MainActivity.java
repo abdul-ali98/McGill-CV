@@ -1,5 +1,6 @@
 package com.mcgill.mcgillcv;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -33,6 +34,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -105,11 +109,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "in true", Toast.LENGTH_LONG).show();
-
             return true;
         }
-        Toast.makeText(this, "after true", Toast.LENGTH_LONG).show();
         return super.onOptionsItemSelected(item);
     }
 
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             int radioButtonID2 = radioGroup2.getCheckedRadioButtonId();
             RadioButton radioButton2 = (RadioButton) radioGroup2.findViewById(radioButtonID2);
             String graduationtYear = (String) radioButton2.getText();
-            cv.getBasicInformation().setStartDate(graduationtYear);
+            cv.getBasicInformation().setExpectedGraduationDate(graduationtYear);
         }catch (Exception e) {
             Toast.makeText(this, "Please select start and expected graduation year", Toast.LENGTH_LONG).show();
             isCorrect = false;
@@ -196,14 +197,14 @@ public class MainActivity extends AppCompatActivity {
         Editable website = ((EditText) findViewById(R.id.website)).getText();
         String regexWebsite = "<\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]>";
         if (website == null || website.toString().length() < 10) {
-            Toast.makeText(this, "Website is Invalid dude but I'll let it slide", Toast.LENGTH_LONG).show();
+       //     Toast.makeText(this, "Website is Invalid dude but I'll let it slide", Toast.LENGTH_LONG).show();
         }
         else {
             cv.getBasicInformation().setPersonalWebsite(website.toString());
         }
         Editable linkedIn = ((EditText) findViewById(R.id.linkedIn)).getText();
         if (linkedIn == null || linkedIn.toString().length() < 10 ) {
-            Toast.makeText(this, "LinkedIn is Invalid, let it slide..", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "LinkedIn is Invalid, let it slide.. you should have one", Toast.LENGTH_LONG).show();
         }
         else {
             cv.getBasicInformation().setLinkedInLink(linkedIn.toString());
@@ -216,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
             isCorrect = false;
         }
         else {
-            if (Double.valueOf(String.valueOf(gpa)) > 3.5)
+            if (Double.valueOf(String.valueOf(gpa)) > 3.7)
                 Toast.makeText(this, gpa.toString() +", You should go out and have fun more often, JK", Toast.LENGTH_LONG).show();
             cv.getBasicInformation().setGpa(gpa.toString());
         }
@@ -235,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
         if (checkboxFrench.isChecked())
             cv.addLanguage(new Language("French",cv));
         if (isCorrect) {
-            Toast.makeText(this, "All good", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -266,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
 
         Editable description = ((EditText) findViewById(R.id.description_third)).getText();
         if (description == null || description.toString().length() > 200) {
-            Toast.makeText(this, "description is invalid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "description is invalid, max 200 char", Toast.LENGTH_SHORT).show();
             isCorrect = false;
         }
         String type = "";
@@ -435,6 +436,16 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.getMessage();
             Log.d("error motherfucker", e.getMessage());
+        }
+    }
+    private void writeToFile(String data, Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("cv.html", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
         }
     }
 }

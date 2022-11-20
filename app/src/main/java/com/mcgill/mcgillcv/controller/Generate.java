@@ -327,10 +327,26 @@ public class Generate {
     
     public static String writeEducation(String string) {
       string = string.replace("$major", "Major: " + cv.getBasicInformation().getMajor());
-      if (cv.getBasicInformation().getMinor().equals("") || cv.getBasicInformation().getMinor() == null)
-      string = string.replace("$minor", "Minor: " + cv.getBasicInformation().getMinor());
+      if (!cv.getBasicInformation().getMinor().equals("") && cv.getBasicInformation().getMinor() != null) {
+          string = string.replace("$minor", "Minor: " + cv.getBasicInformation().getMinor());
+      } else {
+          string = string.replace("<div>$minor</div>", "");
+      }
       string = string.replace("$eduDate", cv.getBasicInformation().getStartDate() + " - " +  cv.getBasicInformation().getExpectedGraduationDate());
       string = string.replace("$school", "McGill University");
+      try {
+          float GPA = Float.valueOf(cv.getBasicInformation().getGpa());
+          if(GPA >= 3.0) {
+              string = string.replace("$GPA", cv.getBasicInformation().getGpa());
+          } else {
+              string = string.replace("<div>$GPA</div>", "");
+          }
+      } catch (Exception e) {
+          string = string.replace("<div>$GPA</div>", "");
+      }
+
+
+
       return string;
     }
     
@@ -342,9 +358,9 @@ public class Generate {
       List<com.mcgill.mcgillcv.model.Experience> experiences = cv.getExperiences();
       
       if (experiences.size() == 0) {
-    	  cv_text = cv_text.replace("<h3 style=\"margin-top: 3%;\">EXPERIENCE</h3>\r\n"
-    	  		+ "    <hr>\r\n"
-    	  		+ "    <section>$experience</section>","");
+    	  cv_text = cv_text.replace("<h3 style=\"margin-top: 3%;\">EXPERIENCE</h3>","");
+            cv_text = cv_text.replace("<hr>","");
+            cv_text = cv_text.replace("<section>$experience</section>","");
     	  return cv_text;
       }
       
@@ -377,9 +393,9 @@ public class Generate {
       List<com.mcgill.mcgillcv.model.Club> clubs = cv.getClubs();
       
       if (clubs.size() == 0) {
-    	  cv_text = cv_text.replace("<h3>CLUBS</h3>\r\n"
-    	  		+ "    <hr>\r\n"
-    	  		+ "    <section class=\"flex-horizontal\">$club</section>","");
+    	  cv_text = cv_text.replace("<h3>CLUBS</h3>", "");
+          cv_text = cv_text.replace("<hr>", "");
+          cv_text = cv_text.replace("<section class=\"flex-horizontal\">$club</section>","");
     	  return cv_text;
       }
       
@@ -417,9 +433,9 @@ public class Generate {
       List<com.mcgill.mcgillcv.model.Skill> skills = cv.getSkills();
       
       if (skills.size()==0) {
-    	  cv_text = cv_text.replace("<h3>SKILLS</h3>\r\n"
-    	  		+ "    <hr>\r\n"
-    	  		+ "    $skill", "");
+    	  cv_text = cv_text.replace("<h3>SKILLS</h3>", "");
+          cv_text = cv_text.replace("<hr>", "");
+          cv_text = cv_text.replace("$skill", "");
     	  return cv_text;
       }
       
@@ -454,9 +470,10 @@ public class Generate {
       List<Language> languages = cv.getLanguages();
       
       if(languages.size() <= 1) {
-    	  cv_text = cv_text.replace("<h3>LANGUAGES</h3>\r\n"
-    	  		+ "    <hr>\r\n"
-    	  		+ "    <section class=\"flex-horizontal-centered\">$language</section>","");
+    	  cv_text = cv_text.replace("<h3>LANGUAGES</h3>","");
+          cv_text = cv_text.replace("<hr>","");
+          cv_text = cv_text.replace("<section class=\"flex-horizontal-centered\">$language</section>","");
+
     	  return cv_text;
       }
       
@@ -480,9 +497,9 @@ public class Generate {
       List<com.mcgill.mcgillcv.model.Sport> sports = cv.getSports();
       
       if (sports.size()==0) {
-    	  cv_text = cv_text.replace("<h3>SPORTS</h3>\r\n"
-    	  		+ "    <hr>\r\n"
-    	  		+ "    <section>$sport</section>", ""); 
+    	  cv_text = cv_text.replace("<h3>SPORTS</h3>", "");
+          cv_text = cv_text.replace("<hr>", "");
+          cv_text = cv_text.replace("<section>$sport</section>", "");
     	  return cv_text;
       }
       
@@ -520,7 +537,6 @@ public class Generate {
 	        projects_text += "<div>"+p.getDescription()+"</div>\n";
 	        projects_text += "</div>\n";
     	  }
-      }
       
       cv_text = cv_text.replace("$project",projects_text);
       
