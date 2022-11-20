@@ -3,13 +3,12 @@
 package com.mcgill.mcgillcv.model;/*PLEASE DO NOT EDIT THIS CODE*/
 
 
-import androidx.lifecycle.ViewModel;
 
 import java.util.*;
 
 // line 73 "model.ump"
 // line 137 "model.ump"
-public class CV extends ViewModel {
+public class CV {
 
   //------------------------
   // MEMBER VARIABLES
