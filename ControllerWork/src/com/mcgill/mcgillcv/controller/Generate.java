@@ -15,12 +15,109 @@ import model.Skill;
 import model.Sport;
 
 public class Generate {
+  
+    
+    private static int SKILL_MAX = 5;
+    private static int PROJECT_MAX = 3;
+    private static int EXPERIENCE_MAX = 3;
+    private static int SPORTS_MAX = 2;
+    private static int LANGUAGES_MAX = 2;
+    private static int PROJECTS_MAX = 2;
+    private static int CLUBS_MAX = 2;
+    
+    private static CV cv = new CV("Bobby","bob@mail.com","514-999-9999","https1","https2","http3","software","mechanical","4.0","01/09/2019","01/05/2024");
+    
+    public static void optimize() {
 
-    private static CV cv = new CV("Bobby","bob@mail.com","514-999-9999",null,null,"http3","software","mechanical","4.0","01/09/2019","01/05/2024");
-
+      int numExperience = cv.getExperiences().size();
+      int numClubs = cv.getClubs().size();
+      int numSkills = cv.getSkills().size();
+      int numSports = cv.getSports().size();
+      int numLanguages = cv.getLanguages().size();
+      int numProjects = cv.getProjects().size();
+      
+      //removeExcess(cv.getSkills(),SKILL_MAX);
+      
+      // Remove excess skills
+      if (numSkills > SKILL_MAX) {
+        List<Skill> skills = cv.getSkills();
+        for (int i = 0; i < skills.size(); i++) {
+          System.out.println(i);
+          if (i+1 > SKILL_MAX){
+              skills.get(i).delete();
+              i--;
+          }
+        }
+      }
+       
+      // Remove excess experience
+      if (numExperience > EXPERIENCE_MAX) {
+        List<Experience> experience = cv.getExperiences();
+        for (int i = 0; i < experience.size(); i++) {
+          System.out.println(i);
+          if (i+1 > EXPERIENCE_MAX){
+            experience.get(i).delete();
+            i--;
+          }
+        }
+      }
+      
+      // Remove excess sports
+      if (numSports > SPORTS_MAX) {
+        List<Sport> sports = cv.getSports();
+        for (int i = 0; i < sports.size(); i++) {
+          System.out.println(i);
+          if (i+1 > SPORTS_MAX){
+            sports.get(i).delete();
+            i--;
+          }
+        }
+      }
+      
+      // Remove excess projects
+      if (numProjects > PROJECTS_MAX) {
+        List<Project> projects = cv.getProjects();
+        for (int i = 0; i < projects.size(); i++) {
+          System.out.println(i);
+          if (i+1 > PROJECT_MAX){
+            projects.get(i).delete();
+            i--;
+          }
+        }
+      }
+      
+      // Remove excess languages
+      if (numLanguages > LANGUAGES_MAX) {
+        List<Language> languages = cv.getLanguages();
+        for (int i = 0; i < languages.size(); i++) {
+          System.out.println(i);
+          if (i+1 > LANGUAGES_MAX){
+            languages.get(i).delete();
+            i--;
+          }
+        }
+      }
+      
+      // Remove excess clubs
+      if (numClubs > CLUBS_MAX) {
+        List<Club> clubs = cv.getClubs();
+        for (int i = 0; i < clubs.size(); i++) {
+          System.out.println(i);
+          if (i+1 > CLUBS_MAX){
+            clubs.get(i).delete();
+            i--;
+          }
+        }
+      }
+      
+      
+      
+      
+      
+    }
+    
     public static void createFakeData(){
       
-        
         Experience experience = new Experience("Software Developer","Google","11/11/11","22/12/22","Coding", Experience.ExperienceType.Internship, cv);
         Experience experience2 = new Experience("Frontend Developer","Microsoft","11/11/11","22/12/22","fake coding", Experience.ExperienceType.Internship, cv);
         Experience experience3 = new Experience("Machine Learning","Google","11/11/11","22/12/22","research", Experience.ExperienceType.Internship, cv);
@@ -67,60 +164,134 @@ public class Generate {
         Project project3 = new Project("Storiko","grocery store application","storiko.com", cv);
 
 
-        System.out.println(cv.getSkill(0).getSkill());
     }
     
-    
-    public static void createHTML() {
-      
-    	File myObj = new File("template.html");
-    	String string ="";
-    	
-    	try {
-	       string = FileUtils.readFileToString(myObj);
-    	} catch (IOException e) {
-
-            // Display message when exception occurs
-            System.out.println("exception occurred" + e);
+    public static boolean checkNotInSkills(String skillName) {
+    /**
+     * HELPER METHOD
+     */
+      for (Skill s : cv.getSkills()) {
+        if (s.getSkill().toLowerCase().contains(skillName.toLowerCase())) {
+          return false;
         }
-	      
-    	string = writeHeader(string);
-    	string = writeContact(string);
-    	string = writeEducation(string);
-    	string = writeExperience(string);
-    	string = writeClubs(string);
-    	string = writeSkills(string);
-    	string = writeSports(string);
-    	string = writeLanguages(string);
-    	string = writeProjects(string);
-    	
-	      try {
-	        
-	        // Open given file in append mode by creating an
-	        // object of BufferedWriter class
-	        BufferedWriter out = new BufferedWriter(
-	            new FileWriter("index.html", false));
-	
-	        // Writing on output stream
-	        out.write(string);
-	        // Closing the connection
-	        out.close();
+      }
+      return true;
     }
-
-    // Catch block to handle the exceptions
-    catch (IOException e) {
-
-        // Display message when exception occurs
-        System.out.println("exception occurred" + e);
+    
+    public static boolean checkNotInProjects(String projectName) {
+      /**
+       * HELPER METHOD
+       */
+      for (Project p : cv.getProjects()) {
+        if (p.getName().toLowerCase().contains(projectName.toLowerCase())) {
+          return false;
+        }
+      }
+      return true;
     }
-	      
-	      
+   
+  
+    public static void addSkillsAndProjectsFromCourses() {
+        
+      for (Course c : cv.getCourses()) {
+        
+        if (c.getCode() == "ECSE321") {
+          if (checkNotInSkills("Agile")) {
+             cv.addSkill("Agile");
+          }
+          if (checkNotInSkills("GitHub")) {
+            cv.addSkill("GitHub");
+          }
+          cv.addProject("Spring-Boot Project", "Full-stack web application based in Java", "");
+        }
+        
+        if (c.getCode() == "ECSE223") {
+          if (checkNotInSkills("Umple")) {
+            cv.addSkill("Umple code generation");
+          }
+          if (checkNotInSkills("Gherkin")) {
+            cv.addSkill("Gherkin");
+          }
+          if (checkNotInSkills("Cucumber")) {
+            cv.addSkill("Cucumber");
+          }
+          cv.addProject("Code Generation Project", "Full-stack web application based in Java", "");
+        }
+        
+        if (c.getCode() == "COMP251") {
+          if (checkNotInSkills("Algorithms")) {
+            cv.addSkill("Algorithms");
+          }
+          if (checkNotInSkills("Data Structures")) {
+            cv.addSkill("Data Structures");
+          }
+          if (checkNotInSkills("Java")) {
+            cv.addSkill("Java");
+          }
+          cv.addProject("Algorithms Project", "Graph algorithms, greedy algorithms, data structures, dynamic programming, and maximum flows projects", "");
+        }
+        
+        if (c.getCode() == "COMP206") {
+          if (checkNotInSkills("Bash")) {
+            cv.addSkill("Bash");
+          }
+          if (checkNotInSkills("Unix")) {
+            cv.addSkill("Unix");
+          }
+          if (checkNotInSkills("Shell")) {
+            cv.addSkill("Shell");
+          }
+          if (checkNotInSkills("C")) {
+            cv.addSkill("C");
+          }
+        }
+        
+        if (c.getCode() == "COMP302") {
+          if (checkNotInSkills("OCaml")) {
+            cv.addSkill("OCaml");
+          }
+        }
+        
+        if (c.getCode() == "ECSE324") {
+          if (checkNotInSkills("Assembly")) {
+            cv.addSkill("ARM Assembly");
+          }
+        }
+        
+        if (c.getCode() == "COMP250") {
+          if (checkNotInSkills("Java")) {
+            cv.addSkill("Java");
+          }
+        }
+        
+        if (c.getCode() == "ECSE202") {
+          if (checkNotInSkills("Java")) {
+            cv.addSkill("Java");
+          }
+        }
+        
+        if (c.getCode() == "COMP202") {
+          if (checkNotInSkills("Python")) {
+            cv.addSkill("Python");
+          }
+        }
+        
+        
+      }
+      
     }
+    
+    
+    
+    
+    
+    
     
     public static String writeHeader(String string) {
     	string = string.replace("$name", cv.getBasicInformation().getName().toUpperCase());
     	return string;
     }
+    
     
     
     public static String writeContact(String string) {
@@ -151,6 +322,7 @@ public class Generate {
       return string;
     }
     
+    
     public static String writeEducation(String string) {
       string = string.replace("$major", cv.getBasicInformation().getMajor());
       string = string.replace("$minor", cv.getBasicInformation().getMinor());
@@ -158,6 +330,7 @@ public class Generate {
       string = string.replace("$school", "McGill University");
       return string;
     }
+    
     
     public static String writeExperience(String cv_text) {
       
@@ -327,6 +500,56 @@ public class Generate {
         createHTML();
     }
     
+    public static void createHTML() {
+      
+      File myObj = new File("template.html");
+      String string ="";
+      
+      try {
+         string = FileUtils.readFileToString(myObj);
+      } catch (IOException e) {
+
+          // Display message when exception occurs
+          System.out.println("exception occurred" + e);
+      }
+      
+      
+      addSkillsAndProjectsFromCourses();
+      optimize();
+      string = writeHeader(string);
+      string = writeContact(string);
+      string = writeEducation(string);
+      string = writeExperience(string);
+      string = writeClubs(string);
+      string = writeSkills(string);
+      string = writeSports(string);
+      string = writeLanguages(string);
+      string = writeProjects(string);
+      
+      
+      System.out.println("CV Successfully Generated.");
+      
+      
+      try {
+          
+          // Open given file in append mode by creating an
+          // object of BufferedWriter class
+          BufferedWriter out = new BufferedWriter(
+              new FileWriter("index.html", false));
+      
+          // Writing on output stream
+          out.write(string);
+          // Closing the connection
+          out.close();
+      }
+    
+      // Catch block to handle the exceptions
+      catch (IOException e) {
+    
+          // Display message when exception occurs
+          System.out.println("exception occurred" + e);
+      }    
+  }
 
 }
 
