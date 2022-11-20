@@ -24,5 +24,72 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_ThirdFragment"
+            app:destination="@id/ThirdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ThirdFragment"
+        android:name="com.mcgill.mcgillcv.ThirdFragment"
+        android:label="@string/third_fragment_label"
+        tools:layout="@layout/fragment_third">
+
+        <action
+            android:id="@+id/action_ThirdFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_ThirdFragment_to_FourthFragment"
+            app:destination="@id/FourthFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FourthFragment"
+        android:name="com.mcgill.mcgillcv.FourthFragment"
+        android:label="@string/fourth_fragment_label"
+        tools:layout="@layout/fragment_fourth">
+
+        <action
+            android:id="@+id/action_FourthFragment_to_ThirdFragment"
+            app:destination="@id/ThirdFragment" />
+        <action
+            android:id="@+id/action_FourthFragment_to_FifthFragment"
+            app:destination="@id/FifthFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FifthFragment"
+        android:name="com.mcgill.mcgillcv.FifthFragment"
+        android:label="@string/fifth_fragment_label"
+        tools:layout="@layout/fragment_fifth">
+
+        <action
+            android:id="@+id/action_FifthFragment_to_FourthFragment"
+            app:destination="@id/FourthFragment" />
+        <action
+            android:id="@+id/action_FifthFragment_to_SixthFragment"
+            app:destination="@id/SixthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SixthFragment"
+        android:name="com.mcgill.mcgillcv.SixthFragment"
+        android:label="@string/sixth_fragment_label"
+        tools:layout="@layout/fragment_sixth">
+
+    <action
+        android:id="@+id/action_SixthFragment_to_FifthFragment"
+        app:destination="@id/FifthFragment" />
+    <action
+        android:id="@+id/action_SixthFragment_to_SeventhFragment"
+        app:destination="@id/SeventhFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SeventhFragment"
+        android:name="com.mcgill.mcgillcv.SeventhFragment"
+        android:label="@string/seventh_fragment_label"
+        tools:layout="@layout/fragment_seventh">
+
+    <action
+        android:id="@+id/action_SeventhFragment_to_SixthFragment"
+        app:destination="@id/SixthFragment" />
     </fragment>
 </navigation>

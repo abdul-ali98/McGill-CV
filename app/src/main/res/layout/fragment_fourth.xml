@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="10dp"
-    tools:context=".SecondFragment">
+    tools:context=".FourthFragment">
 
     <TextView
-        android:id="@+id/textview_second"
+        android:id="@+id/textview_fourth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="@string/hello_second_fragment"
+        android:text="What about Projects?"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,93 +25,62 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textview_second">
+        app:layout_constraintTop_toTopOf="@id/textview_fourth">
 
         <EditText
-            android:id="@+id/website"
+            android:id="@+id/title_fourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:hint="https://www.hello.com"
+            android:hint="Project Name"
             android:textSize="16sp" />
+
         <EditText
-            android:id="@+id/linkedIn"
+            android:id="@+id/link_fourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:hint="LinkedIn URL"
-            android:textSize="16sp"/>
-        <EditText
-            android:id="@+id/github"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="Github URL"
+            android:hint="Website or a link?"
             android:textSize="16sp"/>
 
         <EditText
-            android:id="@+id/gpa"
+            android:id="@+id/description_fourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:hint="GPA FORMAT 02.57"
+            android:lines="3"
+            android:hint="Can you describe the project?"
             android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/languages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:textSize="20sp"
-            android:text="PLease select all languages you speak"/>
-
-        <CheckBox android:id="@+id/checkbox_english"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="English"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/checkbox_french"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="French"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/checkbox_java"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Java"
-            android:onClick="onCheckboxClicked"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="save"
-            android:onClick="secondSaveOnClick"
-            android:id="@+id/second_save"/>
+            android:onClick="fourthSaveOnClick"
+            android:id="@+id/third_save"/>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <Button
-            android:id="@+id/button_second_previous"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/previous" />
             <Button
-                android:id="@+id/button_second_next"
+                android:id="@+id/button_fourth_previous"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/previous" />
+            <Button
+                android:id="@+id/button_fourth_next"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/next" />
-    </LinearLayout>
+        </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
 
 
 

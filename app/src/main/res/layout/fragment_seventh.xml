@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="10dp"
-    tools:context=".SecondFragment">
+    tools:context=".SeventhFragment">
 
     <TextView
-        android:id="@+id/textview_second"
+        android:id="@+id/textview_seventh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="@string/hello_second_fragment"
+        android:text="Please select all course that you have taken"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,94 +25,69 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textview_second">
+        app:layout_constraintTop_toTopOf="@id/textview_seventh">
 
-        <EditText
-            android:id="@+id/website"
+        <CheckBox android:id="@+id/checkbox_comp202"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="https://www.hello.com"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/linkedIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="LinkedIn URL"
-            android:textSize="16sp"/>
-        <EditText
-            android:id="@+id/github"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="Github URL"
-            android:textSize="16sp"/>
+            android:text="COMP202"/>
 
-        <EditText
-            android:id="@+id/gpa"
+        <CheckBox android:id="@+id/checkbox_ecse202"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="GPA FORMAT 02.57"
-            android:textSize="16sp"/>
+            android:text="ECSE202"/>
 
-        <TextView
-            android:id="@+id/languages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:textSize="20sp"
-            android:text="PLease select all languages you speak"/>
-
-        <CheckBox android:id="@+id/checkbox_english"
+        <CheckBox android:id="@+id/checkbox_comp250"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="English"
+            android:text="COMP250"/>
+        <CheckBox android:id="@+id/checkbox_comp206"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COMP206"/>
+        <CheckBox android:id="@+id/checkbox_comp251"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COMP251"/>
+        <CheckBox android:id="@+id/checkbox_comp302"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COMP302"/>
+        <CheckBox android:id="@+id/checkbox_ecse324"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ECSE324"/>
+        <CheckBox android:id="@+id/checkbox_ecse223"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ECSE223"
             android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/checkbox_french"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="French"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/checkbox_java"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Java"
-            android:onClick="onCheckboxClicked"/>
-
+        <CheckBox android:id="@+id/checkbox_ecse321"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ECSE321"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="save"
-            android:onClick="secondSaveOnClick"
-            android:id="@+id/second_save"/>
+            android:text="save and do Magic"
+            android:onClick="seventhSaveOnClick"
+            android:id="@+id/sixth_save"/>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <Button
-            android:id="@+id/button_second_previous"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/previous" />
             <Button
-                android:id="@+id/button_second_next"
+                android:id="@+id/button_seventh_previous"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/next" />
+                android:text="@string/previous" />
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

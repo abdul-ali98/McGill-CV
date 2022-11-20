@@ -3,12 +3,13 @@
 package com.mcgill.mcgillcv.model;/*PLEASE DO NOT EDIT THIS CODE*/
 
 
+
 import java.util.*;
 
 // line 73 "model.ump"
 // line 137 "model.ump"
-public class CV
-{
+
+public class CV {
 
   //------------------------
   // MEMBER VARIABLES

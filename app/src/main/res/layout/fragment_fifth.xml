@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,14 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="10dp"
-    tools:context=".SecondFragment">
+    tools:context=".FifthFragment">
 
     <TextView
-        android:id="@+id/textview_second"
+        android:id="@+id/textview_fifth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="@string/hello_second_fragment"
+        android:text="Any Club involvement at McGill?"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,93 +26,62 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textview_second">
+        app:layout_constraintTop_toTopOf="@id/textview_fifth">
 
         <EditText
-            android:id="@+id/website"
+            android:id="@+id/club_fifth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:hint="https://www.hello.com"
+            android:hint="Club Name"
             android:textSize="16sp" />
-        <EditText
-            android:id="@+id/linkedIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="LinkedIn URL"
-            android:textSize="16sp"/>
-        <EditText
-            android:id="@+id/github"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="Github URL"
-            android:textSize="16sp"/>
 
         <EditText
-            android:id="@+id/gpa"
+            android:id="@+id/title_fifth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:hint="GPA FORMAT 02.57"
+            android:hint="Title or position"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/description_fifth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:lines="3"
+            android:hint="Can you describe your role?"
             android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/languages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:textSize="20sp"
-            android:text="PLease select all languages you speak"/>
-
-        <CheckBox android:id="@+id/checkbox_english"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="English"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/checkbox_french"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="French"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox android:id="@+id/checkbox_java"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Java"
-            android:onClick="onCheckboxClicked"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="save"
-            android:onClick="secondSaveOnClick"
-            android:id="@+id/second_save"/>
+            android:onClick="fifthSaveOnClick"
+            android:id="@+id/third_save"/>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <Button
-            android:id="@+id/button_second_previous"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/previous" />
             <Button
-                android:id="@+id/button_second_next"
+                android:id="@+id/button_fifth_previous"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/previous" />
+            <Button
+                android:id="@+id/button_fifth_next"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/next" />
-    </LinearLayout>
+        </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
 
 
 
