@@ -1,9 +1,10 @@
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
+
 package model;
 
-import java.util.*;
-
 // line 2 "model.ump"
-// line 91 "model.ump"
+// line 90 "model.ump"
 public class BasicInformation
 {
 
@@ -25,7 +26,6 @@ public class BasicInformation
   private String expectedGraduationDate;
 
   //BasicInformation Associations
-  private List<Language> languages;
   private CV cV;
 
   //------------------------
@@ -45,7 +45,6 @@ public class BasicInformation
     gpa = aGpa;
     startDate = aStartDate;
     expectedGraduationDate = aExpectedGraduationDate;
-    languages = new ArrayList<Language>();
     if (aCV == null || aCV.getBasicInformation() != null)
     {
       throw new RuntimeException("Unable to create BasicInformation due to aCV. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
@@ -66,7 +65,6 @@ public class BasicInformation
     gpa = aGpa;
     startDate = aStartDate;
     expectedGraduationDate = aExpectedGraduationDate;
-    languages = new ArrayList<Language>();
     cV = new CV(this);
   }
 
@@ -216,121 +214,14 @@ public class BasicInformation
   {
     return expectedGraduationDate;
   }
-  /* Code from template association_GetMany */
-  public Language getLanguage(int index)
-  {
-    Language aLanguage = languages.get(index);
-    return aLanguage;
-  }
-
-  public List<Language> getLanguages()
-  {
-    List<Language> newLanguages = Collections.unmodifiableList(languages);
-    return newLanguages;
-  }
-
-  public int numberOfLanguages()
-  {
-    int number = languages.size();
-    return number;
-  }
-
-  public boolean hasLanguages()
-  {
-    boolean has = languages.size() > 0;
-    return has;
-  }
-
-  public int indexOfLanguage(Language aLanguage)
-  {
-    int index = languages.indexOf(aLanguage);
-    return index;
-  }
   /* Code from template association_GetOne */
   public CV getCV()
   {
     return cV;
   }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfLanguages()
-  {
-    return 0;
-  }
-  /* Code from template association_AddManyToOne */
-  public Language addLanguage(String aName, CV aCV)
-  {
-    return new Language(aName, this, aCV);
-  }
-
-  public boolean addLanguage(Language aLanguage)
-  {
-    boolean wasAdded = false;
-    if (languages.contains(aLanguage)) { return false; }
-    BasicInformation existingBasicInformation = aLanguage.getBasicInformation();
-    boolean isNewBasicInformation = existingBasicInformation != null && !this.equals(existingBasicInformation);
-    if (isNewBasicInformation)
-    {
-      aLanguage.setBasicInformation(this);
-    }
-    else
-    {
-      languages.add(aLanguage);
-    }
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeLanguage(Language aLanguage)
-  {
-    boolean wasRemoved = false;
-    //Unable to remove aLanguage, as it must always have a basicInformation
-    if (!this.equals(aLanguage.getBasicInformation()))
-    {
-      languages.remove(aLanguage);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  public boolean addLanguageAt(Language aLanguage, int index)
-  {  
-    boolean wasAdded = false;
-    if(addLanguage(aLanguage))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfLanguages()) { index = numberOfLanguages() - 1; }
-      languages.remove(aLanguage);
-      languages.add(index, aLanguage);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveLanguageAt(Language aLanguage, int index)
-  {
-    boolean wasAdded = false;
-    if(languages.contains(aLanguage))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfLanguages()) { index = numberOfLanguages() - 1; }
-      languages.remove(aLanguage);
-      languages.add(index, aLanguage);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addLanguageAt(aLanguage, index);
-    }
-    return wasAdded;
-  }
 
   public void delete()
   {
-    for(int i=languages.size(); i > 0; i--)
-    {
-      Language aLanguage = languages.get(i - 1);
-      aLanguage.delete();
-    }
     CV existingCV = cV;
     cV = null;
     if (existingCV != null)

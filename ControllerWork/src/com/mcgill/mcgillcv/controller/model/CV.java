@@ -1,10 +1,11 @@
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package model;
-
 
 import java.util.*;
 
 // line 73 "model.ump"
-// line 137 "model.ump"
+// line 136 "model.ump"
 public class CV
 {
 
@@ -20,6 +21,7 @@ public class CV
   private List<Skill> skills;
   private List<Sport> sports;
   private List<Course> courses;
+  private List<Project> projects;
 
   //------------------------
   // CONSTRUCTOR
@@ -38,6 +40,7 @@ public class CV
     skills = new ArrayList<Skill>();
     sports = new ArrayList<Sport>();
     courses = new ArrayList<Course>();
+    projects = new ArrayList<Project>();
   }
 
   public CV(String aNameForBasicInformation, String aEmailForBasicInformation, String aPhoneNumberForBasicInformation, String aPersonalWebsiteForBasicInformation, String aLinkedInLinkForBasicInformation, String aGitHubLinkForBasicInformation, String aMajorForBasicInformation, String aMinorForBasicInformation, String aGpaForBasicInformation, String aStartDateForBasicInformation, String aExpectedGraduationDateForBasicInformation)
@@ -49,6 +52,7 @@ public class CV
     skills = new ArrayList<Skill>();
     sports = new ArrayList<Sport>();
     courses = new ArrayList<Course>();
+    projects = new ArrayList<Project>();
   }
 
   //------------------------
@@ -239,15 +243,45 @@ public class CV
     int index = courses.indexOf(aCourse);
     return index;
   }
+  /* Code from template association_GetMany */
+  public Project getProject(int index)
+  {
+    Project aProject = projects.get(index);
+    return aProject;
+  }
+
+  public List<Project> getProjects()
+  {
+    List<Project> newProjects = Collections.unmodifiableList(projects);
+    return newProjects;
+  }
+
+  public int numberOfProjects()
+  {
+    int number = projects.size();
+    return number;
+  }
+
+  public boolean hasProjects()
+  {
+    boolean has = projects.size() > 0;
+    return has;
+  }
+
+  public int indexOfProject(Project aProject)
+  {
+    int index = projects.indexOf(aProject);
+    return index;
+  }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfLanguages()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Language addLanguage(String aName, BasicInformation aBasicInformation)
+  public Language addLanguage(String aName)
   {
-    return new Language(aName, aBasicInformation, this);
+    return new Language(aName, this);
   }
 
   public boolean addLanguage(Language aLanguage)
@@ -671,6 +705,78 @@ public class CV
     }
     return wasAdded;
   }
+  /* Code from template association_MinimumNumberOfMethod */
+  public static int minimumNumberOfProjects()
+  {
+    return 0;
+  }
+  /* Code from template association_AddManyToOne */
+  public Project addProject(String aName, String aDescription, String aLink)
+  {
+    return new Project(aName, aDescription, aLink, this);
+  }
+
+  public boolean addProject(Project aProject)
+  {
+    boolean wasAdded = false;
+    if (projects.contains(aProject)) { return false; }
+    CV existingCV = aProject.getCV();
+    boolean isNewCV = existingCV != null && !this.equals(existingCV);
+    if (isNewCV)
+    {
+      aProject.setCV(this);
+    }
+    else
+    {
+      projects.add(aProject);
+    }
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeProject(Project aProject)
+  {
+    boolean wasRemoved = false;
+    //Unable to remove aProject, as it must always have a cV
+    if (!this.equals(aProject.getCV()))
+    {
+      projects.remove(aProject);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+  /* Code from template association_AddIndexControlFunctions */
+  public boolean addProjectAt(Project aProject, int index)
+  {  
+    boolean wasAdded = false;
+    if(addProject(aProject))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfProjects()) { index = numberOfProjects() - 1; }
+      projects.remove(aProject);
+      projects.add(index, aProject);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveProjectAt(Project aProject, int index)
+  {
+    boolean wasAdded = false;
+    if(projects.contains(aProject))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfProjects()) { index = numberOfProjects() - 1; }
+      projects.remove(aProject);
+      projects.add(index, aProject);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addProjectAt(aProject, index);
+    }
+    return wasAdded;
+  }
 
   public void delete()
   {
@@ -720,6 +826,13 @@ public class CV
       Course aCourse = courses.get(courses.size() - 1);
       aCourse.delete();
       courses.remove(aCourse);
+    }
+    
+    while (projects.size() > 0)
+    {
+      Project aProject = projects.get(projects.size() - 1);
+      aProject.delete();
+      projects.remove(aProject);
     }
     
   }

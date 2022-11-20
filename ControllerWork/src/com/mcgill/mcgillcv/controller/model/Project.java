@@ -1,9 +1,11 @@
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package model;
 
 import java.util.*;
 
-// line 63 "model.ump"
-// line 130 "model.ump"
+// line 62 "model.ump"
+// line 129 "model.ump"
 public class Project
 {
 
@@ -19,17 +21,23 @@ public class Project
   //Project Associations
   private Course course;
   private List<Skill> skills;
+  private CV cV;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Project(String aName, String aDescription, String aLink)
+  public Project(String aName, String aDescription, String aLink, CV aCV)
   {
     name = aName;
     description = aDescription;
     link = aLink;
     skills = new ArrayList<Skill>();
+    boolean didAddCV = setCV(aCV);
+    if (!didAddCV)
+    {
+      throw new RuntimeException("Unable to create project due to cV. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
   }
 
   //------------------------
@@ -114,6 +122,11 @@ public class Project
   {
     int index = skills.indexOf(aSkill);
     return index;
+  }
+  /* Code from template association_GetOne */
+  public CV getCV()
+  {
+    return cV;
   }
   /* Code from template association_SetOptionalOneToMany */
   public boolean setCourse(Course aCourse)
@@ -214,6 +227,25 @@ public class Project
     }
     return wasAdded;
   }
+  /* Code from template association_SetOneToMany */
+  public boolean setCV(CV aCV)
+  {
+    boolean wasSet = false;
+    if (aCV == null)
+    {
+      return wasSet;
+    }
+
+    CV existingCV = cV;
+    cV = aCV;
+    if (existingCV != null && !existingCV.equals(aCV))
+    {
+      existingCV.removeProject(this);
+    }
+    cV.addProject(this);
+    wasSet = true;
+    return wasSet;
+  }
 
   public void delete()
   {
@@ -229,6 +261,12 @@ public class Project
     {
       aSkill.removeProject(this);
     }
+    CV placeholderCV = cV;
+    this.cV = null;
+    if(placeholderCV != null)
+    {
+      placeholderCV.removeProject(this);
+    }
   }
 
 
@@ -238,6 +276,7 @@ public class Project
             "name" + ":" + getName()+ "," +
             "description" + ":" + getDescription()+ "," +
             "link" + ":" + getLink()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "course = "+(getCourse()!=null?Integer.toHexString(System.identityHashCode(getCourse())):"null");
+            "  " + "course = "+(getCourse()!=null?Integer.toHexString(System.identityHashCode(getCourse())):"null") + System.getProperties().getProperty("line.separator") +
+            "  " + "cV = "+(getCV()!=null?Integer.toHexString(System.identityHashCode(getCV())):"null");
   }
 }

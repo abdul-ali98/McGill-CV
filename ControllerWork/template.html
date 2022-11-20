@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        h1   {color: blue;}
+        p    {color: red;}
+        header {
+            text-align: center;
+        }
+        .three-column {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        h3 {
+            margin-bottom: 0;
+            text-align: center;
+        }
+        .name {
+            font-size:x-large;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +27,40 @@
 </head>
 <body>
     <header>
-        <name>$name</name>
+        <div class="name">$name</div>
     </header>
-    <contact>
-        <email>$email</email>
-        <website>$website</website>
-        <phone>$phone</phone>    
+    <contact class="three-column">
+        <div>$email</div>
+        <div>$website</div>
+        <div>$phone</div>    
     </contact>
-    <education>
-        <school>$school</school>
-        <major>$major</major>
-        <minor>$minor</minor>
-        <date>$eduDate</date>
+    <h3>EDUCATION</h3>
+    <hr>
+    <education class="three-column">
+        <div>$school</div>
+        <div>
+            <div>$major</div>
+            <div>$minor</div>
+        </div>
+        <div>$eduDate</div>
     </education>
+    <h3>EXPERIENCE</h3>
+    <hr>
     <experience>$experience</experience>
+    <h3>SKILLS</h3>
+    <hr>
     <skill>$skill</skill>
+    <h3>LANGUAGES</h3>
+    <hr>
     <language>$language</language>
+    <h3>PROJECTS</h3>
+    <hr>
     <project>$project</project>
+    <h3>SPORTS</h3>
+    <hr>
     <sport>$sport</sport>
+    <h3>CLUBS</h3>
+    <hr>
     <club>$club</club>
 </body>
 </html>

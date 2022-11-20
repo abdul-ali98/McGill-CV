@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        h1   {color: blue;}
+        p    {color: red;}
+        header {
+            text-align: center;
+        }
+        .three-column {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        h3 {
+            margin-bottom: 0;
+            text-align: center;
+        }
+        .name {
+            font-size:x-large;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +27,85 @@
 </head>
 <body>
     <header>
-        <name>Bobby</name>
+        <div class="name">BOBBY</div>
     </header>
-    <contact>
-        <email>$email</email>
-        <website>$website</website>
-        <phone>$phone</phone>    
+    <contact class="three-column">
+        <div>bob@mail.com</div>
+        <div>https1</div>
+        <div>514-999-9999</div>    
     </contact>
-    <education>
-        <school>$school</school>
-        <major>$major</major>
-        <minor>$minor</minor>
-        <date>$eduDate</date>
+    <h3>EDUCATION</h3>
+    <hr>
+    <education class="three-column">
+        <div>McGill</div>
+        <div>
+            <div>software</div>
+            <div>mechanical</div>
+        </div>
+        <div>01/09/2019 - 01/05/2024</div>
     </education>
-    <experience>$experience</experience>
-    <skill>$skill</skill>
-    <language>$language</language>
-    <project>$project</project>
-    <sport>$sport</sport>
-    <club>$club</club>
+    <h3>EXPERIENCE</h3>
+    <hr>
+    <experience><h4>Google</h4>
+<li>Software Developer</li>
+<li>11/11/11</li>
+<li>22/12/22</li>
+<h4>Microsoft</h4>
+<li>Frontend Developer</li>
+<li>11/11/11</li>
+<li>22/12/22</li>
+<h4>Google</h4>
+<li>Machine Learning</li>
+<li>11/11/11</li>
+<li>22/12/22</li>
+</experience>
+    <h3>SKILLS</h3>
+    <hr>
+    <skill><h4>Python</h4>
+<h4>Java</h4>
+<h4>C++</h4>
+<h4>Umple</h4>
+<h4>Springboot</h4>
+<h4>Heroku</h4>
+<h4>Windows</h4>
+<h4>HTML/CSS</h4>
+<h4>Javascript</h4>
+<h4>Archery</h4>
+<h4>Piano</h4>
+</skill>
+    <h3>LANGUAGES</h3>
+    <hr>
+    <language><h4>English</h4>
+<h4>French</h4>
+</language>
+    <h3>PROJECTS</h3>
+    <hr>
+    <project><h4>Portfolio</h4>
+<li>portfolio.com</li>
+<li>portfolio</li>
+<h4>Storiko</h4>
+<li>storiko.com</li>
+<li>grocery store application</li>
+</project>
+    <h3>SPORTS</h3>
+    <hr>
+    <sport><h4>Soccer</h4>
+<li>McGill Varsity</li>
+<li>11/11/11</li>
+<li>11/12/11</li>
+<h4>Hockey</h4>
+<li>McGill Intramural</li>
+<li>11/11/11</li>
+<li>11/12/11</li>
+</sport>
+    <h3>CLUBS</h3>
+    <hr>
+    <club><h4>McRun</h4>
+<li>Headrunner</li>
+<li>Runs with people</li>
+<h4>Coffee McGill</h4>
+<li>Barista</li>
+<li>Makes coffee</li>
+</club>
 </body>
 </html>
