@@ -2,8 +2,12 @@
     <string name="app_name">McGillCv</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Welcome Smartie</string>
-    <string name="second_fragment_label">Let\'s get this done</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="third_fragment_label">Third Fragment</string>
+    <string name="fourth_fragment_label">Fourth Fragment</string>
+    <string name="fifth_fragment_label">Fifth Fragment</string>
+    <string name="sixth_fragment_label">Sixth Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

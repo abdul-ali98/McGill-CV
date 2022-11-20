@@ -14,15 +14,26 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.mcgill.mcgillcv.databinding.ActivityMainBinding;
+import com.mcgill.mcgillcv.model.CV;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    public CV getCv() {
+        return cv;
+    }
+
+    public void setCv(CV cv) {
+        this.cv = cv;
+    }
+
+    private CV cv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +54,24 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        initCV();
+        Toast.makeText(this, "initCV() done", Toast.LENGTH_SHORT).show();
+    }
+
+    private void initCV() {
+        String name = "";
+        String email = "";
+        String phone = "";
+        String website = "";
+        String linkedIn = "";
+        String github = "";
+        String major = "";
+        String minor = "";
+        String gpa = "";
+        String startYear = "";
+        String graduationYear = "";
+        cv = new CV(name, email, phone, website, linkedIn, github, major, minor, gpa, startYear, graduationYear);
     }
 
     @Override
