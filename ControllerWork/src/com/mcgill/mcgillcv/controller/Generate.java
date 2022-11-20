@@ -16,7 +16,7 @@ import model.Sport;
 
 public class Generate {
 
-    private static CV cv = new CV("Bobby","bob@mail.com","514-999-9999","https1","https2","http3","software","mechanical","4.0","01/09/2019","01/05/2024");
+    private static CV cv = new CV("Bobby","bob@mail.com","514-999-9999",null,null,"http3","software","mechanical","4.0","01/09/2019","01/05/2024");
 
     public static void createFakeData(){
       
@@ -42,6 +42,16 @@ public class Generate {
         Skill skill8 = new Skill("Javascript", cv);
         Skill skill9 = new Skill("Archery", cv);
         Skill skill10 = new Skill("Piano", cv);
+        Skill skill11 = new Skill("Python", cv);
+        Skill skill12 = new Skill("Java", cv);
+        Skill skill13 = new Skill("C++", cv);
+        Skill skill14 = new Skill("Umple", cv);
+        Skill skill15 = new Skill("Springboot", cv);
+        Skill skill16 = new Skill("Heroku", cv);
+        Skill skill17 = new Skill("Windows", cv);
+        Skill skill18 = new Skill("HTML/CSS", cv);
+        Skill skill19 = new Skill("Javascript", cv);
+        Skill skill20 = new Skill("Archery", cv);
 
         Sport sport = new Sport("Soccer", "McGill Varsity", "11/11/11","11/12/11", cv);
         Sport sport2 = new Sport("Hockey", "McGill Intramural", "11/11/11","11/12/11", cv);
@@ -54,6 +64,7 @@ public class Generate {
 
         Project project = new Project("Portfolio","portfolio","portfolio.com", cv);
         Project project2 = new Project("Storiko","grocery store application","storiko.com", cv);
+        Project project3 = new Project("Storiko","grocery store application","storiko.com", cv);
 
 
         System.out.println(cv.getSkill(0).getSkill());
@@ -114,7 +125,28 @@ public class Generate {
     
     public static String writeContact(String string) {
       string = string.replace("$email", cv.getBasicInformation().getEmail());
-      string = string.replace("$website", cv.getBasicInformation().getPersonalWebsite());
+      
+      if(!(cv.getBasicInformation().getPersonalWebsite()==null)) {
+          string = string.replace("$website", cv.getBasicInformation().getPersonalWebsite());
+      }
+      else {
+    	  string = string.replace("$website", "");
+      }
+      
+      if(!(cv.getBasicInformation().getLinkedInLink()==null)) {
+    	  string = string.replace("$linkedIn", cv.getBasicInformation().getLinkedInLink());
+      }
+      else {
+    	  string = string.replace("$linkedIn", "");
+      }
+      
+      if(!(cv.getBasicInformation().getGitHubLink()==null)) {
+    	  string = string.replace("$gitHub", cv.getBasicInformation().getGitHubLink());
+      }
+      else {
+    	  string = string.replace("$gitHub", "");
+      }
+      
       string = string.replace("$phone", cv.getBasicInformation().getPhoneNumber());
       return string;
     }
@@ -123,7 +155,7 @@ public class Generate {
       string = string.replace("$major", cv.getBasicInformation().getMajor());
       string = string.replace("$minor", cv.getBasicInformation().getMinor());
       string = string.replace("$eduDate", cv.getBasicInformation().getStartDate() + " - " +  cv.getBasicInformation().getExpectedGraduationDate());
-      string = string.replace("$school", "McGill");
+      string = string.replace("$school", "McGill University");
       return string;
     }
     
@@ -135,10 +167,16 @@ public class Generate {
       
       for (Experience e : experiences) {
       
-        xp += "<h4>"+e.getCompanyName()+"</h4>\n";
-        xp += "<li>"+e.getPositionTitle()+"</li>\n";
-        xp += "<li>"+e.getStartDate()+"</li>\n";
-        xp += "<li>"+e.getEndDate()+"</li>\n";
+    	xp += "<div class=\"bottom-space\">\n";
+    	xp += "<div>\n";
+        xp += "<div class=\"title\">"+e.getCompanyName()+"</div>\n";
+        xp += "<div class=\"date\">"+e.getStartDate()+" - ";
+        xp += e.getEndDate()+"</div>\n";
+        xp += "</div>\n";
+        xp += "<div class=\"job-title\">"+e.getPositionTitle()+"</div>\n";
+        xp += "<p>"+e.getTasks()+"</p>\n";
+        xp += "</div>\n";
+        
         
       }
       
@@ -156,11 +194,24 @@ public class Generate {
       List<Club> clubs = cv.getClubs();
       
       for (Club c : clubs) {
-        
-        clubs_text += "<h4>"+c.getName()+"</h4>\n";
-        clubs_text += "<li>"+c.getTitle()+"</li>\n";
-        clubs_text += "<li>"+c.getDescription()+"</li>\n";
-        
+    	  
+    	  if (clubs.indexOf(c) != 0) {
+  	        clubs_text += "<div class=\"col\">\n";
+  	        clubs_text += "</div>\n";
+    		clubs_text += "<div>\n";
+	        clubs_text += "<div class=\"title\">"+c.getName()+"</div>\n";
+	        clubs_text += "<li>"+c.getTitle()+"</li>\n";
+	        clubs_text += "<li>"+c.getDescription()+"</li>\n";
+	        clubs_text += "</div>\n";
+    	  } else {
+    		clubs_text += "<div>\n";
+  	        clubs_text += "<div class=\"title\">"+c.getName()+"</div>\n";
+  	        clubs_text += "<li>"+c.getTitle()+"</li>\n";
+  	        clubs_text += "<li>"+c.getDescription()+"</li>\n";
+  	        clubs_text += "</div>\n";
+    	  }
+    	  
+    		  
       }
       
       cv_text = cv_text.replace("$club",clubs_text);
@@ -177,8 +228,12 @@ public class Generate {
       
       for (Skill s : skills) {
         
-    
-        skills_text += "<h4>"+s.getSkill()+"</h4>\n";
+    	  if (skills.indexOf(s) < skills.size() - 1) {
+    		  skills_text += "<div class=\"skill\">"+s.getSkill()+", </div>\n";
+    	  } else
+    	  {
+    		  skills_text += "<div class=\"skill\">"+s.getSkill()+"</div>\n";  
+    	  }
         
       }
       
@@ -215,12 +270,16 @@ public class Generate {
       List<Sport> sports = cv.getSports();
       
       for (Sport s : sports) {
-        
-        
-        sports_text += "<h4>"+s.getName()+"</h4>\n";
+    	  
+    	sports_text += "<div class=\"bottom-space\">\n";
+    	sports_text += "<div>\n";
+        sports_text += "<div class=\"title\">"+s.getName()+"</div>\n";
+        sports_text += "<div class=\"date\">"+s.getStartDate()+" - ";
+        sports_text += s.getEndDate()+"</div>\n";
+        sports_text += "</div>\n";
         sports_text += "<li>"+s.getSchool()+"</li>\n";
-        sports_text += "<li>"+s.getStartDate()+"</li>\n";
-        sports_text += "<li>"+s.getEndDate()+"</li>\n";
+        sports_text += "</div>";
+        
         
       }
       
@@ -238,12 +297,21 @@ public class Generate {
       List<Project> projects = cv.getProjects();
       
       for (Project p : projects) {
-        
-        
-        projects_text += "<h4>"+p.getName()+"</h4>\n";
-        projects_text += "<li>"+p.getLink()+"</li>\n";
-        projects_text += "<li>"+p.getDescription()+"</li>\n";
-        
+    	  if (projects.indexOf(p) != 0) {
+	        projects_text += "<div class=\"col\">\n";
+	        projects_text += "</div>\n";
+	        projects_text += "<div>\n";
+	        projects_text += "<div class=\"title\">"+p.getName()+"</div>\n";
+	        projects_text += "<li>"+p.getLink()+"</li>\n";
+	        projects_text += "<li>"+p.getDescription()+"</li>\n";
+	        projects_text += "</div>\n";
+    	  } else {
+		    projects_text += "<div>\n";
+  	        projects_text += "<div class=\"title\">"+p.getName()+"</div>\n";
+  	        projects_text += "<li>"+p.getLink()+"</li>\n";
+  	        projects_text += "<li>"+p.getDescription()+"</li>\n";
+  	        projects_text += "</div>\n";
+    	  }
       }
       
       cv_text = cv_text.replace("$project",projects_text);
@@ -258,7 +326,7 @@ public class Generate {
 
         createHTML();
     }
-
+    
 
 }
 
