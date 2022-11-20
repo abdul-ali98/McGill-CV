@@ -16,7 +16,7 @@ import model.Sport;
 
 public class Generate {
 
-    private static CV cv = new CV("Bob","bob@mail.com","514","https1","https2","http3","software","mechanical","4.0","dfghjk","asd");
+    private static CV cv = new CV("Bobby","bob@mail.com","514","https1","https2","http3","software","mechanical","4.0","dfghjk","asd");
 
     public static void createFakeData(){
 
@@ -40,8 +40,10 @@ public class Generate {
     
     
     public static void createHTML() {
-    	File myObj = new File("D:\\Projects\\McGill-CV\\ControllerWork\\index.html");
-    	 String string ="";
+      
+    	File myObj = new File("template.html");
+    	String string ="";
+    	
     	try {
 	       string = FileUtils.readFileToString(myObj);
     	} catch (IOException e) {
@@ -57,7 +59,7 @@ public class Generate {
 	        // Open given file in append mode by creating an
 	        // object of BufferedWriter class
 	        BufferedWriter out = new BufferedWriter(
-	            new FileWriter("D:\\Projects\\McGill-CV\\ControllerWork\\template.html", false));
+	            new FileWriter("index.html", false));
 	
 	        // Writing on output stream
 	        out.write(string);
