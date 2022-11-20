@@ -9,11 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.mcgill.mcgillcv.databinding.FragmentFourthBinding;
+import com.mcgill.mcgillcv.databinding.FragmentSecondBinding;
+import com.mcgill.mcgillcv.databinding.FragmentSixthBinding;
+import com.mcgill.mcgillcv.databinding.FragmentThirdBinding;
 
-public class FourthFragment extends Fragment {
+public class SixthFragment  extends Fragment {
 
-    private FragmentFourthBinding binding;
+    private FragmentSixthBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +23,7 @@ public class FourthFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFourthBinding.inflate(inflater, container, false);
+        binding = FragmentSixthBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -29,18 +31,18 @@ public class FourthFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFourthPrevious.setOnClickListener(new View.OnClickListener() {
+        binding.buttonSixthPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FourthFragment.this)
-                        .navigate(R.id.action_FourthFragment_to_ThirdFragment);
+                NavHostFragment.findNavController(SixthFragment.this)
+                        .navigate(R.id.action_SixthFragment_to_FifthFragment);
             }
         });
-        binding.buttonFourthNext.setOnClickListener(new View.OnClickListener() {
+        binding.buttonSixthNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FourthFragment.this)
-                        .navigate(R.id.action_FourthFragment_to_FifthFragment);
+                NavHostFragment.findNavController(SixthFragment.this)
+                        .navigate(R.id.action_SixthFragment_to_SeventhFragment);
             }
         });
     }

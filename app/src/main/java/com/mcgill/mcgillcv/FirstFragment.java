@@ -66,7 +66,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String selected = (String) parent.getItemAtPosition(position);
-        Toast.makeText(getContext(), selected, Toast.LENGTH_LONG).show();
+      //  Toast.makeText(getContext(), selected, Toast.LENGTH_LONG).show();
     }
 
     @Override

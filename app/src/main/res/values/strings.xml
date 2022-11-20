@@ -8,11 +8,12 @@
     <string name="fourth_fragment_label">Fourth Fragment</string>
     <string name="fifth_fragment_label">Fifth Fragment</string>
     <string name="sixth_fragment_label">Sixth Fragment</string>
+    <string name="seventh_fragment_label">Seventh Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">Hello McGill!</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_second_fragment">Only GPA and selecting a language are mandatory</string>
 
     <string-array name="major">
         <item>Select your Major</item>

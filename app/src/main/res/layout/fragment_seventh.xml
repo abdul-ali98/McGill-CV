@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="10dp"
-    tools:context=".FifthFragment">
+    tools:context=".SeventhFragment">
 
     <TextView
-        android:id="@+id/textview_fifth"
+        android:id="@+id/textview_seventh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Any Club involvement at McGill?"
+        android:text="Please select all course that you have taken"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,59 +29,65 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textview_fifth">
+        app:layout_constraintTop_toTopOf="@id/textview_seventh">
 
-        <EditText
-            android:id="@+id/club_fifth"
+        <CheckBox android:id="@+id/checkbox_comp202"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="Club Name"
-            android:textSize="16sp" />
+            android:text="COMP202"/>
 
-        <EditText
-            android:id="@+id/title_fifth"
+        <CheckBox android:id="@+id/checkbox_ecse202"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:hint="Title or position"
-            android:textSize="16sp" />
+            android:text="ECSE202"/>
 
-        <EditText
-            android:id="@+id/description_fifth"
+        <CheckBox android:id="@+id/checkbox_comp250"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:lines="3"
-            android:hint="Can you describe your role?"
-            android:textSize="16sp"/>
-
+            android:text="COMP250"/>
+        <CheckBox android:id="@+id/checkbox_comp206"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COMP206"/>
+        <CheckBox android:id="@+id/checkbox_comp251"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COMP251"/>
+        <CheckBox android:id="@+id/checkbox_comp302"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COMP302"/>
+        <CheckBox android:id="@+id/checkbox_ecse324"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ECSE324"/>
+        <CheckBox android:id="@+id/checkbox_ecse223"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ECSE223"
+            android:onClick="onCheckboxClicked"/>
+        <CheckBox android:id="@+id/checkbox_ecse321"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ECSE321"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="save"
-            android:onClick="fifthSaveOnClick"
-            android:id="@+id/third_save"/>
+            android:text="save and do Magic"
+            android:onClick="seventhSaveOnClick"
+            android:id="@+id/sixth_save"/>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/button_fifth_previous"
+                android:id="@+id/button_seventh_previous"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/previous" />
-            <Button
-                android:id="@+id/button_fifth_next"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/next" />
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
