@@ -25,7 +25,7 @@ public class Generate {
     private static int PROJECTS_MAX = 2;
     private static int CLUBS_MAX = 2;
     
-    private static CV cv = new CV("Bobby","bob@mail.com","514-999-9999","https://www.youtube.com/watch?v=cYswNr7s4Pk","https2","http3","software","mechanical","4.0","01/09/2019","01/05/2024");
+    private static com.mcgill.mcgillcv.model.CV cv = new CV("Bobby","bob@mail.com","514-999-9999","https://www.youtube.com/watch?v=cYswNr7s4Pk","https2","http3","software","mechanical","4.0","01/09/2019","01/05/2024");
     
     public static void optimize() {
 
@@ -319,6 +319,7 @@ public class Generate {
     
     public static String writeEducation(String string) {
       string = string.replace("$major", "Major: " + cv.getBasicInformation().getMajor());
+      if (cv.getBasicInformation().getMinor().equals("") || cv.getBasicInformation().getMinor() == null)
       string = string.replace("$minor", "Minor: " + cv.getBasicInformation().getMinor());
       string = string.replace("$eduDate", cv.getBasicInformation().getStartDate() + " - " +  cv.getBasicInformation().getExpectedGraduationDate());
       string = string.replace("$school", "McGill University");
@@ -330,7 +331,14 @@ public class Generate {
       
       String xp = "";
       
-      List<Experience> experiences = cv.getExperiences();
+      List<com.mcgill.mcgillcv.model.Experience> experiences = cv.getExperiences();
+      
+      if (experiences.size() == 0) {
+    	  cv_text = cv_text.replace("<h3 style=\"margin-top: 3%;\">EXPERIENCE</h3>\r\n"
+    	  		+ "    <hr>\r\n"
+    	  		+ "    <section>$experience</section>","");
+    	  return cv_text;
+      }
       
       for (Experience e : experiences) {
       
@@ -358,7 +366,14 @@ public class Generate {
       
       String clubs_text = "";
       
-      List<Club> clubs = cv.getClubs();
+      List<com.mcgill.mcgillcv.model.Club> clubs = cv.getClubs();
+      
+      if (clubs.size() == 0) {
+    	  cv_text = cv_text.replace("<h3>CLUBS</h3>\r\n"
+    	  		+ "    <hr>\r\n"
+    	  		+ "    <section class=\"flex-horizontal\">$club</section>","");
+    	  return cv_text;
+      }
       
       for (Club c : clubs) {
     	  
@@ -391,7 +406,14 @@ public class Generate {
       
       String skills_text = "";
       
-      List<Skill> skills = cv.getSkills();
+      List<com.mcgill.mcgillcv.model.Skill> skills = cv.getSkills();
+      
+      if (skills.size()==0) {
+    	  cv_text = cv_text.replace("<h3>SKILLS</h3>\r\n"
+    	  		+ "    <hr>\r\n"
+    	  		+ "    $skill", "");
+    	  return cv_text;
+      }
       
       for (Skill s : skills) {
         
@@ -427,6 +449,7 @@ public class Generate {
     	  cv_text = cv_text.replace("<h3>LANGUAGES</h3>\r\n"
     	  		+ "    <hr>\r\n"
     	  		+ "    <section class=\"flex-horizontal-centered\">$language</section>","");
+    	  return cv_text;
       }
       
       for (Language l : languages) {
@@ -446,7 +469,14 @@ public class Generate {
       
       String sports_text = "";
       
-      List<Sport> sports = cv.getSports();
+      List<com.mcgill.mcgillcv.model.Sport> sports = cv.getSports();
+      
+      if (sports.size()==0) {
+    	  cv_text = cv_text.replace("<h3>SPORTS</h3>\r\n"
+    	  		+ "    <hr>\r\n"
+    	  		+ "    <section>$sport</section>", ""); 
+    	  return cv_text;
+      }
       
       for (Sport s : sports) {
     	  
@@ -476,20 +506,11 @@ public class Generate {
       List<Project> projects = cv.getProjects();
       
       for (Project p : projects) {
-    	  if (projects.indexOf(p) != 0) {
-	        projects_text += "<div class=\"col\">\n";
-	        projects_text += "</div>\n";
-	        projects_text += "<div>\n";
+    	  	projects_text += "<div class=\"bottom-space\">\n";
 	        projects_text += "<div class=\"title\">"+p.getName()+"</div>\n";
 	        projects_text += "<li>"+p.getLink()+"</li>\n";
-	        projects_text += "<li>"+p.getDescription()+"</li>\n";
+	        projects_text += "<div>"+p.getDescription()+"</div>\n";
 	        projects_text += "</div>\n";
-    	  } else {
-		    projects_text += "<div>\n";
-  	        projects_text += "<div class=\"title\">"+p.getName()+"</div>\n";
-  	        projects_text += "<li>"+p.getLink()+"</li>\n";
-  	        projects_text += "<li>"+p.getDescription()+"</li>\n";
-  	        projects_text += "</div>\n";
     	  }
       }
       
