@@ -1,6 +1,3 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
-/*PLEASE DO NOT EDIT THIS CODE*/
 package com.mcgill.mcgillcv.model;
 
 import java.util.*;

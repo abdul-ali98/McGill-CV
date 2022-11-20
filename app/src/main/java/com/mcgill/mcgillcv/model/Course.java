@@ -1,4 +1,5 @@
-package com.mcgill.mcgillcv.model;/*PLEASE DO NOT EDIT THIS CODE*/
+package com.mcgill.mcgillcv.model;
+
 /*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 import java.util.*;
 

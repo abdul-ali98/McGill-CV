@@ -6,7 +6,6 @@
 	<classpathentry kind="src" path="app/src/androidTest/java"/>
 	<classpathentry kind="src" path="app/src/main/java"/>
 	<classpathentry kind="src" path="app/src/test/java"/>
-	<classpathentry kind="src" path="ControllerWork/src/com/mcgill/mcgillcv/controller"/>
 	<classpathentry kind="lib" path="app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar"/>
 	<classpathentry kind="lib" path="app/build/intermediates/merged_java_res/debug/base.jar"/>
 	<classpathentry kind="lib" path="app/build/intermediates/project_dex_archive/debug/out/29c4229e1d421142f17349b28c0893358776183c2e7163a18d93bff83d371e7a_0.jar"/>
