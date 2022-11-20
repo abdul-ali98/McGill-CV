@@ -2,22 +2,94 @@
 <html lang="en">
 <head>
     <style>
-        h1   {color: blue;}
-        p    {color: red;}
+        hr {
+            margin-top: 0;
+        }
+        p {
+            margin-top: 0;
+        }
+        body {
+            margin: 2%;
+        }
         header {
             text-align: center;
-        }
-        .three-column {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
         }
         h3 {
             margin-bottom: 0;
             text-align: center;
+            background-color: rgb(226, 226, 226);
         }
         .name {
-            font-size:x-large;
+            font-size: x-large;
+            margin-bottom: 1%;
+            font-style: italic;
+        }
+        #saveAsPdfBtn {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            border-radius: 3px;
+            background-color: rgb(57, 233, 75);
+            color: whitesmoke;
+            text-decoration: none;
+            display: block;
+            width: fit-content;
+            padding: 0.5% 1%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #saveAsPdfBtn:hover {
+            transition: all 0.2s;
+            background-color: rgb(43, 182, 57);
+        }
+        .left {
+            float: left;
+        }
+        .center {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            height: fit-content;
+        }
+        .right {
+            float: right;
+        }
+        .flex-vertical {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .flex-horizontal {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: max-content;
+        }
+        section {
+            overflow: hidden;
+        }
+        .title {
+            font-size: larger;
+            font-weight: bold;
+            display: block;
+        }
+        .date {
+            float: right;
+            font-weight: bold;
+        }
+        .skill {
+            display: inline;
+            font-weight: bold;
+        }
+        .bottom-space {
+            margin-bottom: 2%;
+        }
+        .col {
+            border-left: solid 1px;
+        }
+        .job-title {
+            font-size: larger;
+            display: block;
+            font-style: italic;
         }
     </style>
     <meta charset="UTF-8">
@@ -27,40 +99,42 @@
 </head>
 <body>
     <header>
+        <div class="left">$email</div>
+        <div class="right">$phone</div>
         <div class="name">$name</div>
     </header>
-    <contact class="three-column">
-        <div>$email</div>
-        <div>$website</div>
-        <div>$phone</div>    
-    </contact>
+    <section>
+        <div class="left">$linkedIn</div>
+        <div class="right">$gitHub</div>
+        <div class="center">$website</div>    
+    </section>
     <h3>EDUCATION</h3>
     <hr>
-    <education class="three-column">
-        <div>$school</div>
-        <div>
+    <section>
+        <div class="title">$school</div>
+        <div class="date">$eduDate</div>
+        <div class="center flex-vertical">
             <div>$major</div>
             <div>$minor</div>
         </div>
-        <div>$eduDate</div>
-    </education>
-    <h3>EXPERIENCE</h3>
+    </section>
+    <h3 style="margin-top: 3%;">EXPERIENCE</h3>
     <hr>
-    <experience>$experience</experience>
+    <section>$experience</section>
     <h3>SKILLS</h3>
     <hr>
-    <skill>$skill</skill>
+    <section>$skill</section>
     <h3>LANGUAGES</h3>
     <hr>
-    <language>$language</language>
+    <section>$language</section>
     <h3>PROJECTS</h3>
     <hr>
-    <project>$project</project>
+    <section class="flex-horizontal">$project</section>
     <h3>SPORTS</h3>
     <hr>
-    <sport>$sport</sport>
+    <section>$sport</section>
     <h3>CLUBS</h3>
     <hr>
-    <club>$club</club>
+    <section class="flex-horizontal">$club</section>
 </body>
 </html>
