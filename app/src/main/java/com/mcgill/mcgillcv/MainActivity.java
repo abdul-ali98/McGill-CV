@@ -26,6 +26,7 @@ import com.mcgill.mcgillcv.model.Sport;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -175,19 +176,19 @@ public class MainActivity extends AppCompatActivity {
             RadioGroup radioGroup2 = (RadioGroup) findViewById(R.id.radioGroup_graduation);
             int radioButtonID2 = radioGroup2.getCheckedRadioButtonId();
             RadioButton radioButton2 = (RadioButton) radioGroup2.findViewById(radioButtonID2);
-            String graduationtYear = (String) radioButton.getText();
+            String graduationtYear = (String) radioButton2.getText();
             cv.getBasicInformation().setStartDate(graduationtYear);
         }catch (Exception e) {
             Toast.makeText(this, "Please select start and expected graduation year", Toast.LENGTH_LONG).show();
             isCorrect = false;
         }
-        if (isCorrect)
+      /*  if (isCorrect)
             Toast.makeText(this, cv.getBasicInformation().getEmail() +
                     cv.getBasicInformation().getName() + " "
-            + cv.getBasicInformation().getPhoneNumber() + " "
-            + cv.getBasicInformation().getStartDate()+ " "
-            + cv.getBasicInformation().getExpectedGraduationDate() + " "
-                    + cv.getBasicInformation().getMajor(), Toast.LENGTH_SHORT).show();
+                    + cv.getBasicInformation().getPhoneNumber() + " "
+                    + cv.getBasicInformation().getStartDate()+ " "
+                    + cv.getBasicInformation().getExpectedGraduationDate() + " "
+                    + cv.getBasicInformation().getMajor(), Toast.LENGTH_SHORT).show();*/
     }
 
     public void secondSaveOnClick(View v){
@@ -205,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "LinkedIn is Invalid, let it slide..", Toast.LENGTH_LONG).show();
         }
         else {
-        cv.getBasicInformation().setLinkedInLink(linkedIn.toString());
+            cv.getBasicInformation().setLinkedInLink(linkedIn.toString());
         }
 
         Editable gpa = ((EditText) findViewById(R.id.gpa)).getText();
@@ -290,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void emptyThird(View v) {
         ((EditText) findViewById(R.id.title_third)).setText("");
-       ((EditText) findViewById(R.id.company_third)).setText("");
+        ((EditText) findViewById(R.id.company_third)).setText("");
         ((EditText) findViewById(R.id.startDate_third)).setText("");
         ((EditText) findViewById(R.id.description_third)).setText("");
         ((EditText) findViewById(R.id.endDate_third)).setText("");
@@ -414,10 +415,26 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"You only took " + cv.getCourses().size()+ " courses", Toast.LENGTH_LONG ).show();
 
         try {
-            Log.d("Generate: ", Generate.createHTML(this.getApplicationContext(), cv));
+            String output=  Generate.createHTML(this.getApplicationContext(), cv);
+            Log.d("Generate: ", output);
+            WebView webView = (WebView) findViewById(R.id.webview_seventh);
+            webView.setVisibility(View.VISIBLE);
+            checkboxComp202.setVisibility(View.GONE);
+            checkboxComp206 .setVisibility(View.GONE);
+            checkboxECSE202 .setVisibility(View.GONE);
+            checkboxComp250 .setVisibility(View.GONE);
+            checkboxComp251 .setVisibility(View.GONE);
+            checkboxComp302 .setVisibility(View.GONE);
+            checkboxECSE324 .setVisibility(View.GONE);
+            checkboxECSE223.setVisibility(View.GONE);
+            checkboxECSE321.setVisibility(View.GONE);
+            findViewById(R.id.textview_seventh).setVisibility(View.GONE);
+            findViewById(R.id.seventh_save).setVisibility(View.GONE);
+            findViewById(R.id.button_seventh_previous).setVisibility(View.GONE);
+            webView.loadDataWithBaseURL("",output, "text/html", "UTF-8", "" );
         } catch (Exception e) {
             e.getMessage();
-                    Log.d("error motherfucker", e.getMessage());
+            Log.d("error motherfucker", e.getMessage());
         }
     }
 }

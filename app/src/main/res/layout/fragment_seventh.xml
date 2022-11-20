@@ -8,6 +8,12 @@
     android:layout_marginHorizontal="10dp"
     tools:context=".SeventhFragment">
 
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/webview_seventh"
+        android:visibility="invisible"/>
+
     <TextView
         android:id="@+id/textview_seventh"
         android:layout_width="wrap_content"
@@ -66,6 +72,7 @@
             android:layout_height="wrap_content"
             android:text="ECSE223"
             android:onClick="onCheckboxClicked"/>
+
         <CheckBox android:id="@+id/checkbox_ecse321"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,18 +82,14 @@
             android:layout_height="wrap_content"
             android:text="save and do Magic"
             android:onClick="seventhSaveOnClick"
-            android:id="@+id/sixth_save"/>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:id="@+id/seventh_save"/>
+
             <Button
                 android:id="@+id/button_seventh_previous"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/previous" />
-        </LinearLayout>
 
     </LinearLayout>
 
