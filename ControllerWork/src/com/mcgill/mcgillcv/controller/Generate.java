@@ -205,6 +205,45 @@ public class Generate {
           cv.addProject("Code Generation Project", "Full-stack web application based in Java", "");
         }
         
+        if (c.getCode() == "COMP251") {
+          if (checkNotInSkills("Algorithms")) {
+            cv.addSkill("Algorithms");
+          }
+          if (checkNotInSkills("Data Structures")) {
+            cv.addSkill("Data Structures");
+          }
+          if (checkNotInSkills("Java")) {
+            cv.addSkill("Java");
+          }
+          cv.addProject("Algorithms Project", "Graph algorithms, greedy algorithms, data structures, dynamic programming, and maximum flows projects", "");
+        }
+        
+        if (c.getCode() == "COMP206") {
+          if (checkNotInSkills("Bash")) {
+            cv.addSkill("Bash");
+          }
+          if (checkNotInSkills("Unix")) {
+            cv.addSkill("Unix");
+          }
+          if (checkNotInSkills("Shell")) {
+            cv.addSkill("Shell");
+          }
+          if (checkNotInSkills("C")) {
+            cv.addSkill("C");
+          }
+        }
+        
+        if (c.getCode() == "COMP302") {
+          if (checkNotInSkills("OCaml")) {
+            cv.addSkill("OCaml");
+          }
+        }
+        
+        if (c.getCode() == "ECSE324") {
+          if (checkNotInSkills("Assembly")) {
+            cv.addSkill("ARM Assembly");
+          }
+        }
         
         if (c.getCode() == "COMP250") {
           if (checkNotInSkills("Java")) {
@@ -212,11 +251,18 @@ public class Generate {
           }
         }
         
-        if (c.getCode() == "COMP202") {
+        if (c.getCode() == "ECSE202") {
           if (checkNotInSkills("Java")) {
             cv.addSkill("Java");
           }
         }
+        
+        if (c.getCode() == "COMP202") {
+          if (checkNotInSkills("Python")) {
+            cv.addSkill("Python");
+          }
+        }
+        
         
       }
       
@@ -413,6 +459,7 @@ public class Generate {
       
       
       System.out.println("CV Successfully Generated.");
+      
       
       try {
           
