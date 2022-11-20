@@ -183,13 +183,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please select start and expected graduation year", Toast.LENGTH_LONG).show();
             isCorrect = false;
         }
-      /*  if (isCorrect)
-            Toast.makeText(this, cv.getBasicInformation().getEmail() +
-                    cv.getBasicInformation().getName() + " "
-                    + cv.getBasicInformation().getPhoneNumber() + " "
-                    + cv.getBasicInformation().getStartDate()+ " "
-                    + cv.getBasicInformation().getExpectedGraduationDate() + " "
-                    + cv.getBasicInformation().getMajor(), Toast.LENGTH_SHORT).show();*/
+        if (isCorrect)
+            Toast.makeText(this, "saved!", Toast.LENGTH_SHORT).show();
     }
 
     public void secondSaveOnClick(View v){
