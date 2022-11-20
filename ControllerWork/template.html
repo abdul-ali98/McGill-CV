@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <style>
+        html {
+            font-size: 2vw;
+        }
         hr {
             margin-top: 0;
         }
@@ -47,7 +50,7 @@
         .center {
             position: absolute;
             left: 50%;
-            transform: translate(-50%);
+            transform: translate(-50%, -50%);
             height: fit-content;
         }
         .right {
@@ -61,7 +64,14 @@
         .flex-horizontal {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: space-evenly;
+            height: max-content;
+        }
+        .flex-horizontal-centered {
+            margin-bottom: 1%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
             height: max-content;
         }
         section {
@@ -70,13 +80,13 @@
         .title {
             font-size: larger;
             font-weight: bold;
-            display: block;
+            display: inline;
         }
         .date {
             float: right;
             font-weight: bold;
         }
-        .skill {
+        .inline {
             display: inline;
             font-weight: bold;
         }
@@ -104,9 +114,9 @@
         <div class="name">$name</div>
     </header>
     <section>
-        <div class="left">$linkedIn</div>
-        <div class="right">$gitHub</div>
-        <div class="center">$website</div>    
+        <a href="$linkedIn" class="left">$linkedIn</a>
+        <a href="$gitHub" class="right">$gitHub</a>
+        <a href="$website" class="center">$website</a>    
     </section>
     <h3>EDUCATION</h3>
     <hr>
@@ -123,10 +133,10 @@
     <section>$experience</section>
     <h3>SKILLS</h3>
     <hr>
-    <section>$skill</section>
+    $skill
     <h3>LANGUAGES</h3>
     <hr>
-    <section>$language</section>
+    <section class="flex-horizontal-centered">$language</section>
     <h3>PROJECTS</h3>
     <hr>
     <section class="flex-horizontal">$project</section>

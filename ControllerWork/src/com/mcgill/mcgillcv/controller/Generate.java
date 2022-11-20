@@ -17,7 +17,7 @@ import model.Sport;
 public class Generate {
   
     
-    private static int SKILL_MAX = 5;
+    private static int SKILL_MAX = 18;
     private static int PROJECT_MAX = 3;
     private static int EXPERIENCE_MAX = 3;
     private static int SPORTS_MAX = 2;
@@ -25,7 +25,7 @@ public class Generate {
     private static int PROJECTS_MAX = 2;
     private static int CLUBS_MAX = 2;
     
-    private static CV cv = new CV("Bobby","bob@mail.com","514-999-9999","https1","https2","http3","software","mechanical","4.0","01/09/2019","01/05/2024");
+    private static CV cv = new CV("Bobby","bob@mail.com","514-999-9999","https://www.youtube.com/watch?v=cYswNr7s4Pk","https2","http3","software","mechanical","4.0","01/09/2019","01/05/2024");
     
     public static void optimize() {
 
@@ -42,7 +42,6 @@ public class Generate {
       if (numSkills > SKILL_MAX) {
         List<Skill> skills = cv.getSkills();
         for (int i = 0; i < skills.size(); i++) {
-          System.out.println(i);
           if (i+1 > SKILL_MAX){
               skills.get(i).delete();
               i--;
@@ -54,7 +53,6 @@ public class Generate {
       if (numExperience > EXPERIENCE_MAX) {
         List<Experience> experience = cv.getExperiences();
         for (int i = 0; i < experience.size(); i++) {
-          System.out.println(i);
           if (i+1 > EXPERIENCE_MAX){
             experience.get(i).delete();
             i--;
@@ -66,7 +64,6 @@ public class Generate {
       if (numSports > SPORTS_MAX) {
         List<Sport> sports = cv.getSports();
         for (int i = 0; i < sports.size(); i++) {
-          System.out.println(i);
           if (i+1 > SPORTS_MAX){
             sports.get(i).delete();
             i--;
@@ -78,7 +75,6 @@ public class Generate {
       if (numProjects > PROJECTS_MAX) {
         List<Project> projects = cv.getProjects();
         for (int i = 0; i < projects.size(); i++) {
-          System.out.println(i);
           if (i+1 > PROJECT_MAX){
             projects.get(i).delete();
             i--;
@@ -90,7 +86,6 @@ public class Generate {
       if (numLanguages > LANGUAGES_MAX) {
         List<Language> languages = cv.getLanguages();
         for (int i = 0; i < languages.size(); i++) {
-          System.out.println(i);
           if (i+1 > LANGUAGES_MAX){
             languages.get(i).delete();
             i--;
@@ -102,7 +97,6 @@ public class Generate {
       if (numClubs > CLUBS_MAX) {
         List<Club> clubs = cv.getClubs();
         for (int i = 0; i < clubs.size(); i++) {
-          System.out.println(i);
           if (i+1 > CLUBS_MAX){
             clubs.get(i).delete();
             i--;
@@ -118,7 +112,7 @@ public class Generate {
     
     public static void createFakeData(){
       
-        Experience experience = new Experience("Software Developer","Google","11/11/11","22/12/22","Coding", Experience.ExperienceType.Internship, cv);
+        Experience experience = new Experience("Software Developer","Google","11/11/11","22/12/22","Coding is the best thing that you can do and if you don't do coding you don't deserve to live you stupid ant", Experience.ExperienceType.Internship, cv);
         Experience experience2 = new Experience("Frontend Developer","Microsoft","11/11/11","22/12/22","fake coding", Experience.ExperienceType.Internship, cv);
         Experience experience3 = new Experience("Machine Learning","Google","11/11/11","22/12/22","research", Experience.ExperienceType.Internship, cv);
 
@@ -207,7 +201,7 @@ public class Generate {
         
         if (c.getCode() == "ECSE223") {
           if (checkNotInSkills("Umple")) {
-            cv.addSkill("Umple code generation");
+            cv.addSkill("UML");
           }
           if (checkNotInSkills("Gherkin")) {
             cv.addSkill("Gherkin");
@@ -324,8 +318,8 @@ public class Generate {
     
     
     public static String writeEducation(String string) {
-      string = string.replace("$major", cv.getBasicInformation().getMajor());
-      string = string.replace("$minor", cv.getBasicInformation().getMinor());
+      string = string.replace("$major", "Major: " + cv.getBasicInformation().getMajor());
+      string = string.replace("$minor", "Minor: " + cv.getBasicInformation().getMinor());
       string = string.replace("$eduDate", cv.getBasicInformation().getStartDate() + " - " +  cv.getBasicInformation().getExpectedGraduationDate());
       string = string.replace("$school", "McGill University");
       return string;
@@ -401,11 +395,18 @@ public class Generate {
       
       for (Skill s : skills) {
         
-    	  if (skills.indexOf(s) < skills.size() - 1) {
-    		  skills_text += "<div class=\"skill\">"+s.getSkill()+", </div>\n";
-    	  } else
-    	  {
-    		  skills_text += "<div class=\"skill\">"+s.getSkill()+"</div>\n";  
+    	  if(skills.indexOf(s) == 0) {
+    		  skills_text += "<section class=\"flex-horizontal-centered\">";
+    	  }
+    	  if(skills.indexOf(s) % 5 == 0 && skills.indexOf(s) < skills.size()-1) {
+    		  skills_text += "</section>";
+    		  skills_text += "<section class=\"flex-horizontal-centered\">";
+    	  }
+    	  
+		  skills_text += "<div class=\"inline\">"+s.getSkill()+"</div>\n";  
+		  
+		  if (skills.indexOf(s) == skills.size()-1){
+    		  skills_text += "</section>";
     	  }
         
       }
@@ -422,10 +423,15 @@ public class Generate {
       
       List<Language> languages = cv.getLanguages();
       
+      if(languages.size() <= 1) {
+    	  cv_text = cv_text.replace("<h3>LANGUAGES</h3>\r\n"
+    	  		+ "    <hr>\r\n"
+    	  		+ "    <section class=\"flex-horizontal-centered\">$language</section>","");
+      }
+      
       for (Language l : languages) {
         
-        
-        languages_text += "<h4>"+l.getName()+"</h4>\n";
+    		  languages_text += "<div class=\"inline\">"+l.getName()+"</div>\n";
         
       }
       

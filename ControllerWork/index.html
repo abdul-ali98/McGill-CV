@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <style>
+        html {
+            font-size: 2vw;
+        }
         hr {
             margin-top: 0;
         }
@@ -47,7 +50,7 @@
         .center {
             position: absolute;
             left: 50%;
-            transform: translate(-50%);
+            transform: translate(-50%, -50%);
             height: fit-content;
         }
         .right {
@@ -61,7 +64,14 @@
         .flex-horizontal {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: space-evenly;
+            height: max-content;
+        }
+        .flex-horizontal-centered {
+            margin-bottom: 1%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
             height: max-content;
         }
         section {
@@ -70,13 +80,13 @@
         .title {
             font-size: larger;
             font-weight: bold;
-            display: block;
+            display: inline;
         }
         .date {
             float: right;
             font-weight: bold;
         }
-        .skill {
+        .inline {
             display: inline;
             font-weight: bold;
         }
@@ -104,9 +114,9 @@
         <div class="name">BOBBY</div>
     </header>
     <section>
-        <div class="left"></div>
-        <div class="right">http3</div>
-        <div class="center"></div>    
+        <a href="https2" class="left">https2</a>
+        <a href="http3" class="right">http3</a>
+        <a href="https://www.youtube.com/watch?v=cYswNr7s4Pk" class="center">https://www.youtube.com/watch?v=cYswNr7s4Pk</a>    
     </section>
     <h3>EDUCATION</h3>
     <hr>
@@ -114,8 +124,8 @@
         <div class="title">McGill University</div>
         <div class="date">01/09/2019 - 01/05/2024</div>
         <div class="center flex-vertical">
-            <div>software</div>
-            <div>mechanical</div>
+            <div>Major: software</div>
+            <div>Minor: mechanical</div>
         </div>
     </section>
     <h3 style="margin-top: 3%;">EXPERIENCE</h3>
@@ -126,7 +136,7 @@
 <div class="date">11/11/11 - 22/12/22</div>
 </div>
 <div class="job-title">Software Developer</div>
-<p>Coding</p>
+<p>Coding is the best thing that you can do and if you don't do coding you don't deserve to live you stupid ant</p>
 </div>
 <div class="bottom-space">
 <div>
@@ -147,32 +157,29 @@
 </section>
     <h3>SKILLS</h3>
     <hr>
-    <section><div class="skill">Python, </div>
-<div class="skill">Java, </div>
-<div class="skill">C++, </div>
-<div class="skill">Umple, </div>
-<div class="skill">Springboot, </div>
-<div class="skill">Heroku, </div>
-<div class="skill">Windows, </div>
-<div class="skill">HTML/CSS, </div>
-<div class="skill">Javascript, </div>
-<div class="skill">Archery, </div>
-<div class="skill">Piano, </div>
-<div class="skill">Python, </div>
-<div class="skill">Java, </div>
-<div class="skill">C++, </div>
-<div class="skill">Umple, </div>
-<div class="skill">Springboot, </div>
-<div class="skill">Heroku, </div>
-<div class="skill">Windows, </div>
-<div class="skill">HTML/CSS, </div>
-<div class="skill">Javascript, </div>
-<div class="skill">Archery</div>
+    <section class="flex-horizontal-centered"></section><section class="flex-horizontal-centered"><div class="inline">Python</div>
+<div class="inline">Java</div>
+<div class="inline">C++</div>
+<div class="inline">Umple</div>
+<div class="inline">Springboot</div>
+</section><section class="flex-horizontal-centered"><div class="inline">Heroku</div>
+<div class="inline">Windows</div>
+<div class="inline">HTML/CSS</div>
+<div class="inline">Javascript</div>
+<div class="inline">Archery</div>
+</section><section class="flex-horizontal-centered"><div class="inline">Piano</div>
+<div class="inline">Python</div>
+<div class="inline">Java</div>
+<div class="inline">C++</div>
+<div class="inline">Umple</div>
+</section><section class="flex-horizontal-centered"><div class="inline">Springboot</div>
+<div class="inline">Heroku</div>
+<div class="inline">Windows</div>
 </section>
     <h3>LANGUAGES</h3>
     <hr>
-    <section><h4>English</h4>
-<h4>French</h4>
+    <section class="flex-horizontal-centered"><div class="inline">English</div>
+<div class="inline">French</div>
 </section>
     <h3>PROJECTS</h3>
     <hr>
